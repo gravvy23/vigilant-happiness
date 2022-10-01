@@ -16,7 +16,7 @@ export function QuestionForm() {
     const hash = CryptoJS.SHA1(value.trim().toLowerCase());
     const currentAnswerSha1 = hash.toString(CryptoJS.enc.Hex);
 
-    if (currentAnswerSha1 === currentQuestion.answerSha1) {
+    if (currentAnswerSha1 === currentQuestion?.answerSha1) {
       dispatch(increasePoints());
     } else {
       dispatch(decreaseChances());
@@ -24,7 +24,7 @@ export function QuestionForm() {
 
     setValue("");
     next();
-  }, [currentQuestion.answerSha1, dispatch, next, value]);
+  }, [currentQuestion, dispatch, next, value]);
 
   const handleInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value),
