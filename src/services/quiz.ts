@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { QuizQuestionResponse } from "./types";
 
 export const quizApi = createApi({
   reducerPath: "quizApi",
@@ -6,7 +7,7 @@ export const quizApi = createApi({
     baseUrl: "https://eok9ha49itquif.m.pipedream.net",
   }),
   endpoints: (builder) => ({
-    getQuestions: builder.query<any, void>({
+    getQuestions: builder.query<QuizQuestionResponse, void>({
       query: () => "/",
     }),
   }),
