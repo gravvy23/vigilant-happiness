@@ -27,7 +27,7 @@ export const useGetQuizQuestion = () => {
     data: { questions = [] } = {},
     refetch,
     isFetching,
-  } = useGetQuestionsQuery();
+  } = useGetQuestionsQuery(undefined, { refetchOnMountOrArgChange: true });
   const { usedQuestionList } = useAppSelector((state) => state.question);
   const usedQuestionListRef = useRef(usedQuestionList);
   const dispatch = useAppDispatch();
@@ -36,7 +36,7 @@ export const useGetQuizQuestion = () => {
     usedQuestionListRef.current = usedQuestionList;
   }, [usedQuestionList]);
 
-  const internalNext = useCallback(
+  const getNextUnusedQuestion = useCallback(
     (
       usedQuestions: Array<string>,
       currentQuestions: Array<string>,
@@ -47,7 +47,7 @@ export const useGetQuizQuestion = () => {
         currentQuestions,
         currentIndex
       );
-      console.log(nextIndex, usedQuestions.length);
+
       if (nextIndex === -1) {
         refetch();
       } else {
@@ -61,20 +61,20 @@ export const useGetQuizQuestion = () => {
 
   useEffect(() => {
     if (questions.length > 0)
-      internalNext(
+      getNextUnusedQuestion(
         usedQuestionListRef.current,
         questions.map(({ question }) => question),
         -1
       );
-  }, [internalNext, questions, usedQuestionListRef]);
+  }, [getNextUnusedQuestion, questions, usedQuestionListRef]);
 
   const next = useCallback(() => {
-    internalNext(
+    getNextUnusedQuestion(
       usedQuestionList,
       questions.map(({ question }) => question),
       currentQuestionIdx
     );
-  }, [currentQuestionIdx, internalNext, questions, usedQuestionList]);
+  }, [currentQuestionIdx, getNextUnusedQuestion, questions, usedQuestionList]);
 
   return {
     next,

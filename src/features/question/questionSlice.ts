@@ -19,9 +19,12 @@ export const questionSlice = createSlice({
         state.usedQuestionList.push(action.payload);
       }
     },
+    resetQuestions: (state) => {
+      state.usedQuestionList = [];
+    },
   },
 });
 
-export const { addQuestion } = questionSlice.actions;
+export const { addQuestion, resetQuestions } = questionSlice.actions;
 
 export default questionSlice.reducer;

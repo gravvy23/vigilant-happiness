@@ -20,13 +20,14 @@ export const counterSlice = createSlice({
     decreaseChances: (state) => {
       state.chances -= 1;
     },
-    reset: (state) => {
+    resetCounter: (state) => {
       state.chances = 3;
       state.points = 0;
     },
   },
 });
 
-export const { increasePoints, decreaseChances, reset } = counterSlice.actions;
+export const { increasePoints, decreaseChances, resetCounter } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;
