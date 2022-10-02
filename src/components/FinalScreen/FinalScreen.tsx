@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { Flex, Heading, Button } from "@chakra-ui/react";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { resetCounter } from "./features/counter/counterSlice";
-import { resetQuestions } from "./features/question/questionSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { resetCounter } from "../../features/counter/counterSlice";
+import { resetQuestions } from "../../features/question/questionSlice";
 
 export function FinalScreen() {
   const { points } = useAppSelector((state) => state.counter);

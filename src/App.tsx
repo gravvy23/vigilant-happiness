@@ -1,8 +1,6 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useAppSelector } from "./hooks";
-import { QuestionForm } from "./QuestionForm";
-import { Results } from "./Results";
-import { FinalScreen } from "./FinalScreen";
+import { QuestionForm, Results, FinalScreen } from "./components";
 
 function App() {
   const { chances } = useAppSelector((state) => state.counter);

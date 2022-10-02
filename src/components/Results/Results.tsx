@@ -1,5 +1,5 @@
 import { Flex, Box, Heading } from "@chakra-ui/react";
-import { useAppSelector } from "./hooks";
+import { useAppSelector } from "../../hooks";
 
 export function Results() {
   const { points, chances } = useAppSelector((state) => state.counter);

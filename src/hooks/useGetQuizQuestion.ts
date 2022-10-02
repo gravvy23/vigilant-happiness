@@ -3,23 +3,7 @@ import { useGetQuestionsQuery } from "../services/quiz";
 import { useAppSelector } from "./useAppSelector";
 import { useAppDispatch } from "./useAppDispatch";
 import { addQuestion } from "../features/question/questionSlice";
-
-const findNextUnusedItem = <T>(
-  usedList: Array<T>,
-  list: Array<T>,
-  index: number
-): number => {
-  const nextIndex = index + 1;
-  const nextQuestionInOrder = list[nextIndex];
-  if (
-    nextQuestionInOrder &&
-    usedList.find((question) => question === nextQuestionInOrder)
-  ) {
-    return findNextUnusedItem(usedList, list, nextIndex);
-  }
-
-  return nextIndex < list.length ? nextIndex : -1;
-};
+import { findNextUnusedItem } from "./helpers";
 
 export const useGetQuizQuestion = () => {
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
@@ -78,6 +62,7 @@ export const useGetQuizQuestion = () => {
 
   return {
     next,
-    currentQuestion: isFetching ? undefined : questions[currentQuestionIdx],
+    currentQuestion: questions[currentQuestionIdx],
+    isFetching,
   };
 };
